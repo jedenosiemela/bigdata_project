@@ -1,0 +1,62 @@
+voclabs:~/environment $ sudo apt-get install p7zip-full
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+p7zip-full is already the newest version (16.02+dfsg-6).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+voclabs:~/environment $ mkdir BigData_project
+voclabs:~/environment $ cd BigData_project
+voclabs:~/environment/BigData_project $ mkdir data
+voclabs:~/environment/BigData_project $ cd data
+voclabs:~/environment/BigData_project/data $ wget https://archive.org/download/stackexchange/3dprinting.stackexchange.com.7z
+--2023-05-07 16:10:17--  https://archive.org/download/stackexchange/3dprinting.stackexchange.com.7z
+Resolving archive.org (archive.org)... 207.241.224.2
+Connecting to archive.org (archive.org)|207.241.224.2|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://ia600107.us.archive.org/27/items/stackexchange/3dprinting.stackexchange.com.7z [following]
+--2023-05-07 16:10:18--  https://ia600107.us.archive.org/27/items/stackexchange/3dprinting.stackexchange.com.7z
+Resolving ia600107.us.archive.org (ia600107.us.archive.org)... 207.241.227.247
+Connecting to ia600107.us.archive.org (ia600107.us.archive.org)|207.241.227.247|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 16811852 (16M) [application/x-7z-compressed]
+Saving to: ‘3dprinting.stackexchange.com.7z’
+
+3dprinting.stackexchange.com.7z                             100%[==========================================================================================================================================>]  16.03M  10.8MB/s    in 1.5s    
+
+2023-05-07 16:10:19 (10.8 MB/s) - ‘3dprinting.stackexchange.com.7z’ saved [16811852/16811852]
+
+voclabs:~/environment/BigData_project/data $ 7z x 3dprinting.stackexchange.com.7z
+
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=C.UTF-8,Utf16=on,HugeFiles=on,64 bits,2 CPUs Intel(R) Xeon(R) Platinum 8175M CPU @ 2.50GHz (50654),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 16811852 bytes (17 MiB)
+
+Extracting archive: 3dprinting.stackexchange.com.7z
+--
+Path = 3dprinting.stackexchange.com.7z
+Type = 7z
+Physical Size = 16811852
+Headers Size = 327
+Method = BZip2
+Solid = -
+Blocks = 8
+
+Everything is Ok        
+
+Files: 8
+Size:       95154946
+Compressed: 16811852
+voclabs:~/environment/BigData_project/data $ aws s3 mb s3://bigdata-project-data-us-east-1
+make_bucket: bigdata-project-data-us-east-1
+voclabs:~/environment/BigData_project/data $ aws s3 mv ./ s3://bigdata-project-data-us-east-1 --recursive --exclude '*.7z'
+move: ./Tags.xml to s3://bigdata-project-data-us-east-1/Tags.xml  
+move: ./PostLinks.xml to s3://bigdata-project-data-us-east-1/PostLinks.xml
+move: ./Badges.xml to s3://bigdata-project-data-us-east-1/Badges.xml
+move: ./Comments.xml to s3://bigdata-project-data-us-east-1/Comments.xml
+move: ./Votes.xml to s3://bigdata-project-data-us-east-1/Votes.xml
+move: ./Posts.xml to s3://bigdata-project-data-us-east-1/Posts.xml
+move: ./Users.xml to s3://bigdata-project-data-us-east-1/Users.xml
+move: ./PostHistory.xml to s3://bigdata-project-data-us-east-1/PostHistory.xml
+voclabs:~/environment/BigData_project/data $ 
