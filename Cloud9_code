@@ -1,0 +1,8 @@
+voclabs:~/environment $ sudo apt-get install p7zip-full
+voclabs:~/environment $ mkdir BigData_project
+voclabs:~/environment $ cd BigData_project
+voclabs:~/environment/BigData_project $ mkdir data
+voclabs:~/environment/BigData_project $ cd data
+voclabs:~/environment/BigData_project/data $ wget https://archive.org/download/stackexchange/3dprinting.stackexchange.com.7z
+voclabs:~/environment/BigData_project/data $ 7z x 3dprinting.stackexchange.com.7z
+voclabs:~/environment/BigData_project/data $ aws s3 mv ./ s3://bigdata-project-data-us-east-1 --recursive --exclude '*.7z'
