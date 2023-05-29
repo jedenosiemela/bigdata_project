@@ -6,5 +6,5 @@ voclabs:~/environment/BigData_project $ cd data
 voclabs:~/environment/BigData_project/data $ wget https://archive.org/download/stackexchange/3dprinting.stackexchange.com.7z
 voclabs:~/environment/BigData_project/data $ 7z x 3dprinting.stackexchange.com.7z
 voclabs:~/environment/BigData_project/data $ aws s3 mb s3://bigdata-project-data-us-east-1
-voclabs:~/environment/BigData_project/data $ aws s3 mb s3://bigdata-parquet-data-us-east-1
+voclabs:~/environment/BigData_project/data $ aws s3 mb s3://bigdata-parquet-data
 voclabs:~/environment/BigData_project/data $ aws s3 mv ./ s3://bigdata-project-data-us-east-1 --recursive --exclude '*.7z'
