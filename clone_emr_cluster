@@ -3,9 +3,9 @@ aws emr create-cluster \
  --release-label "emr-6.10.0" \
  --service-role "arn:aws:iam::928017470823:role/EMR_DefaultRole" \
  --ec2-attributes '{"InstanceProfile":"EMR_EC2_DefaultRole","EmrManagedMasterSecurityGroup":"sg-0e857948f36d732e7","EmrManagedSlaveSecurityGroup":"sg-0bb4a538cfe7d7c38","SubnetId":"subnet-010d7fa4688877ef6"}' \
- --applications Name=Hadoop Name=JupyterEnterpriseGateway Name=JupyterHub Name=Spark Name=Zeppelin \
- --instance-groups '[{"InstanceCount":1,"InstanceGroupType":"CORE","Name":"Core","InstanceType":"m4.large","EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType":"gp2","SizeInGB":32},"VolumesPerInstance":1}]}},{"InstanceCount":1,"InstanceGroupType":"TASK","Name":"Task - 1","InstanceType":"m4.large","EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType":"gp2","SizeInGB":32},"VolumesPerInstance":1}]}},{"InstanceCount":1,"InstanceGroupType":"MASTER","Name":"Primary","InstanceType":"m4.large","EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType":"gp2","SizeInGB":32},"VolumesPerInstance":1}]}}]' \
+ --applications Name=Hadoop Name=JupyterEnterpriseGateway Name=JupyterHub Name=Spark \
+ --instance-groups '[{"InstanceCount":1,"InstanceGroupType":"CORE","Name":"Core","InstanceType":"m4.large","EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType":"gp2","SizeInGB":32},"VolumesPerInstance":1}]}},{"InstanceCount":1,"InstanceGroupType":"MASTER","Name":"Primary","InstanceType":"m4.large","EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType":"gp2","SizeInGB":32},"VolumesPerInstance":1}]}},{"InstanceCount":1,"InstanceGroupType":"TASK","Name":"Task - 1","InstanceType":"m4.large","EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType":"gp2","SizeInGB":32},"VolumesPerInstance":1}]}}]' \
  --scale-down-behavior "TERMINATE_AT_TASK_COMPLETION" \
- --auto-termination-policy '{"IdleTimeout":3600}' \
+ --auto-termination-policy '{"IdleTimeout":90000}' \
  --os-release-label "2.0.20230418.0" \
  --region "us-east-1"
